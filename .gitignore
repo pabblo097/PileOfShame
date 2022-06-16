@@ -1,0 +1,28 @@
+#React app .gitignore
+# dependencies
+pile-of-shame/node_modules
+pile-of-shame/.pnp
+pile-of-shame/.pnp.js
+
+# testing
+pile-of-shame/coverage
+
+# production
+pile-of-shame/build
+
+# misc
+pile-of-shame/.DS_Store
+pile-of-shame/.env.local
+pile-of-shame/.env.development.local
+pile-of-shame/.env.test.local
+pile-of-shame/.env.production.local
+
+pile-of-shame/npm-debug.log*
+pile-of-shame/yarn-debug.log*
+pile-of-shame/yarn-error.log*
+
+
+#Api .gitignore
+PileOfShame.Api/.vs
+PileOfShame.Api/PileOfShame.Api/bin
+PileOfShame.Api/PileOfShame.Api/obj
