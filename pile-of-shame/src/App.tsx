@@ -18,12 +18,20 @@ function App() {
   return (
     <RootContainer>
       <Header />
-      {/* <Container>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
-        magni voluptatibus et mollitia accusantium fugit illo hic ullam
-        asperiores rem voluptas, ad consectetur doloribus nobis repudiandae
-        perspiciatis assumenda explicabo.
-      </Container> */}
+      <Container>
+        <>
+          <h2>IOfuhdsaf</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+            magni voluptatibus et mollitia accusantium fugit illo hic ullam
+            asperiores rem voluptas, ad consectetur doloribus nobis repudiandae
+            perspiciatis assumenda explicabo. Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Saepe unde ipsa delectus aspernatur
+            illum adipisci, fuga reprehenderit sed accusamus, facilis magni
+            quasi nostrum perspiciatis error corrupti velit id ad suscipit.
+          </p>
+        </>
+      </Container>
       {/* <Main /> */}
       {/* <Background /> */}
     </RootContainer>
