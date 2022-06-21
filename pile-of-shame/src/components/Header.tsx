@@ -1,25 +1,24 @@
 import styled from "styled-components";
 import { devices, sizes } from "../style/breakpoints";
-import NavItem from "./NavItem";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import colorPallete from "../style/colorPallete";
 import { useEffect, useRef, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 type ScrollTo = "START" | "END";
 
 const Header = (): JSX.Element => {
   const [displayLeftArrow, setDisplayLeftArrow] = useState(false);
   const [displayRightArrow, setDisplayRightArrow] = useState(false);
-
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (contentRef.current === null) return;
-    contentRef.current.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
+    contentRef.current.addEventListener("scroll", handleScrollArrows);
+    window.addEventListener("resize", handleScrollArrows);
   });
 
-  const handleScroll = (): void => {
+  const handleScrollArrows = (): void => {
     if (contentRef.current === null) return;
 
     if (window.innerWidth > sizes.mobile) {
@@ -38,7 +37,7 @@ const Header = (): JSX.Element => {
     else setDisplayRightArrow(true);
   };
 
-  const scrollContentTo = (scrollTo: ScrollTo): void => {
+  const scrollContentTo = (scrollTo: ScrollTo, wait: boolean): void => {
     if (contentRef.current === null) return;
 
     const maxScrollValue =
@@ -46,16 +45,34 @@ const Header = (): JSX.Element => {
 
     switch (scrollTo) {
       case "START":
-        contentRef.current.scrollTo({
-          left: 0,
-          behavior: "smooth",
-        });
+        if (wait) {
+          setTimeout(() => {
+            contentRef.current?.scrollTo({
+              left: 0,
+              behavior: "smooth",
+            });
+          }, 1000);
+        } else {
+          contentRef.current.scrollTo({
+            left: 0,
+            behavior: "smooth",
+          });
+        }
         break;
       case "END":
-        contentRef.current.scrollTo({
-          left: maxScrollValue,
-          behavior: "smooth",
-        });
+        if (wait) {
+          setTimeout(() => {
+            contentRef.current?.scrollTo({
+              left: maxScrollValue,
+              behavior: "smooth",
+            });
+          }, 1000);
+        } else {
+          contentRef.current.scrollTo({
+            left: maxScrollValue,
+            behavior: "smooth",
+          });
+        }
         break;
       default:
         break;
@@ -65,24 +82,55 @@ const Header = (): JSX.Element => {
   return (
     <StyledHeader>
       <div id="content" ref={contentRef}>
-        <a href="#">
+        <Link to="/">
           <h1 id="logo">Pile Of Shame</h1>
-        </a>
+        </Link>
+
         <nav>
-          <NavItem name="My games" />
-          <NavItem name="Games" />
-          <NavItem name="About" />
-          <NavItem name="Login" />
-          <NavItem name="Register" />
+          <NavLink
+            to="/mygames"
+            className={({ isActive }) => (isActive ? "linkActive" : "link")}
+            onClick={() => scrollContentTo("START", true)}
+          >
+            My games
+          </NavLink>
+          <NavLink
+            to="/games"
+            className={({ isActive }) => (isActive ? "linkActive" : "link")}
+            onClick={() => scrollContentTo("START", true)}
+          >
+            Games
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? "linkActive" : "link")}
+            onClick={() => scrollContentTo("START", true)}
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/login"
+            className={({ isActive }) => (isActive ? "linkActive" : "link")}
+            onClick={() => scrollContentTo("START", true)}
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/register"
+            className={({ isActive }) => (isActive ? "linkActive" : "link")}
+            onClick={() => scrollContentTo("START", true)}
+          >
+            Register
+          </NavLink>
         </nav>
       </div>
       {displayLeftArrow && (
-        <div id="arrow-left" onClick={() => scrollContentTo("START")}>
+        <div id="arrow-left" onClick={() => scrollContentTo("START", false)}>
           <FaChevronLeft />
         </div>
       )}
       {displayRightArrow && (
-        <div id="arrow-right" onClick={() => scrollContentTo("END")}>
+        <div id="arrow-right" onClick={() => scrollContentTo("END", false)}>
           <FaChevronRight />
         </div>
       )}
@@ -159,5 +207,25 @@ const StyledHeader = styled.header`
     #arrow-right {
       display: flex;
     }
+  }
+
+  & .link {
+    padding: 10px 5px;
+    color: white;
+    margin: 0 5px;
+  }
+
+  & .link:hover,
+  .linkActive:hover {
+    padding-bottom: 8px;
+    color: ${colorPallete.yellow};
+    border-bottom: ${colorPallete.yellow} solid 2px;
+  }
+
+  & .linkActive {
+    padding: 10px;
+    color: ${colorPallete.gold};
+    padding-bottom: 8px;
+    border-bottom: ${colorPallete.gold} solid 2px;
   }
 `;

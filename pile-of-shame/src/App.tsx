@@ -1,9 +1,14 @@
+import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import "./App.css";
 import Background from "./components/Background";
-import Container from "./components/Container";
 import Header from "./components/Header";
-import Main from "./components/Main";
+import About from "./pages/About";
+import Games from "./pages/Games";
+import Login from "./pages/Login";
+import MyGames from "./pages/MyGames";
+import NoMatch from "./pages/NoMatch";
+import Register from "./pages/Register";
 
 const RootContainer = styled.div`
   max-width: 1044px;
@@ -18,21 +23,18 @@ function App() {
   return (
     <RootContainer>
       <Header />
-      <Container>
-        <>
-          <h2>IOfuhdsaf</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
-            magni voluptatibus et mollitia accusantium fugit illo hic ullam
-            asperiores rem voluptas, ad consectetur doloribus nobis repudiandae
-            perspiciatis assumenda explicabo. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Saepe unde ipsa delectus aspernatur
-            illum adipisci, fuga reprehenderit sed accusamus, facilis magni
-            quasi nostrum perspiciatis error corrupti velit id ad suscipit.
-          </p>
-        </>
-      </Container>
-      {/* <Main /> */}
+      <main>
+        <Routes>
+          <Route path="/" />
+          <Route path="mygames" element={<MyGames />} />
+          <Route path="games" element={<Games />} />
+          <Route path="about" element={<About />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
+      </main>
+
       {/* <Background /> */}
     </RootContainer>
   );
