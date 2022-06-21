@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../style/breakpoints";
 import colorPallete from "../style/colorPallete";
 import CloseButton from "./CloseButton";
 
@@ -44,5 +45,13 @@ const StyledArticle = styled.article`
     margin: 10px 0;
     overflow: hidden;
     overflow-x: auto;
+  }
+
+  @media ${devices.mobile} {
+    padding: 10px 10px;
+
+    & header {
+      padding: 0;
+    }
   }
 `;

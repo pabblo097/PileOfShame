@@ -143,13 +143,13 @@ export default Header;
 const StyledHeader = styled.header`
   position: relative;
   background-color: ${colorPallete.darkBlueTransparent};
-  max-width: 1024px;
-  height: 50px;
-  margin: 10px 0;
+  margin-top: 10px;
   padding: 10px 20px;
   border: ${colorPallete.gold} solid 1px;
   box-shadow: 0px 0px 10px 0px rgba(66, 68, 90, 1);
   border-radius: 15px;
+  position: sticky;
+  top: 10px;
 
   & #content {
     height: 50px;

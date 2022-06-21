@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import "./App.css";
 import Background from "./components/Background";
 import Header from "./components/Header";
 import About from "./pages/About";
@@ -16,7 +15,8 @@ const RootContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 0 10px;
+  padding: 0 5px;
+  align-items: stretch;
 `;
 
 function App() {
