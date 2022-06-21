@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { ImCross } from "react-icons/im";
 import colorPallete from "../style/colorPallete";
+import { useNavigate } from "react-router-dom";
 
 const CloseButton = ({}: {}): JSX.Element => {
+  const navigate = useNavigate();
+
   return (
-    <StyledButton>
+    <StyledButton onClick={() => navigate("/")}>
       <ImCross />
     </StyledButton>
   );
